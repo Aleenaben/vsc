@@ -1,0 +1,12 @@
+const exportMarkdown = () => {
+  axios.post(`/api/projects/${id}/export`)
+    .then(response => {
+      const blob = new Blob([response.data], { type: 'text/markdown' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `${project.title}_summary.md`;
+      link.click();
+    })
+    .catch(error => console.error('Error exporting summary:', error));
+};
+Y
